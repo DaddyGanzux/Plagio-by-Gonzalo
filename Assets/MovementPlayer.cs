@@ -8,6 +8,19 @@ using UnityEngine;
 // : Herencia - permite usar las funciones y variables de MonoBehavior 
 public class MovementPlayer:MonoBehaviour 
 {
+
+    //Variables
+
+    //float
+    //int
+    //string
+    //bool
+    //char
+
+    public float numero = 15f;
+    private int VidaPersonaje = 0;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +34,11 @@ public class MovementPlayer:MonoBehaviour
     {
 
         Debug.Log("Update empieza aqui");
+
+        if (VidaPersonaje <= 0)
+        {
+            Debug.Log("Mamaste");
+        }
 
     }//End Update 
 
