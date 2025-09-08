@@ -1,81 +1,89 @@
-//Librerias - Funciones prestadas de otros scripts 
+using System.Runtime.CompilerServices;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
-
-// Public - Da permiso de usar su informacion 
-// Class - Forma de declarar 
-// MovementPlayer - Nombre del script
-// : Herencia - permite usar las funciones y variables de MonoBehavior 
 public class MovementPlayer : MonoBehaviour
 {
-
     public Transform transformPlayer;
     public Rigidbody2D rigidBody2DPlayer;
-
-    /*Variables
-
-    float
-    int
-    string
-    bool
-    char*/
-
+    public float Velocidad = 1.5f;
+    private bool mirandoDerecha = true;
     private int VidaPersonaje = 0;
     public float numero = 15f;
+    bool enSuelo;
+    BoxCollider m_boxCollider; // Referencia al collider del Game Object
 
+    public void Jump()
+    {
+        enSuelo = false;
+        transformPlayer.position += new Vector3(0, 500, 0) * Time.deltaTime;
+    }
+
+    // Verificamos las colisiones
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        // Hemos puesto un tag "Ground" sobre el suelo
+        if (other.gameObject.CompareTag("Suelo")) ;
+        enSuelo = true;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         Debug.Log("Start empieza aqui");
 
         rigidBody2DPlayer = GetComponent<Rigidbody2D>();   //Jala el rb del objeto 
-
-    }//End Start
+        m_boxCollider = GetComponent<BoxCollider>();
+        enSuelo = true;
+    }
 
     // Update is called once per frame
     void Update()
     {
-
-        //Moverse a la izquierda
+        // Moverse a la izquierda
         if (Input.GetKey(KeyCode.A))
         {
-            //transformPlayer.position += new Vector3(-5, 0, 0) * Time.deltaTime;
+            rigidBody2DPlayer.AddForce(Vector2.left * Velocidad);
             Debug.Log("Vamos a la izquierda");
 
-            //rigidBody2DPlayer
+            if (!mirandoDerecha)
+            {
+                Flip();
+            }
         }
 
-        //Moverse a la Derecha
+        // Moverse a la derecha
         if (Input.GetKey(KeyCode.D))
         {
-            transformPlayer.position += new Vector3(5, 0, 0) * Time.deltaTime;
+            rigidBody2DPlayer.AddForce(Vector2.right * Velocidad);
             Debug.Log("Vamos a la Derecha");
+
+            if (mirandoDerecha)
+            {
+                Flip();
+            }
         }
 
-        //Saltar
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transformPlayer.position += new Vector3(0, 500, 0) * Time.deltaTime;
+        // Saltar
+        if (Input.GetKeyDown(KeyCode.Space) && enSuelo == true)
+        { 
+            Jump();
             Debug.Log("Saltemos");
         }
-
-
-
-       /* Debug.Log("Update empieza aqui");
-
-        if (VidaPersonaje <= 0)
-        {
-            Debug.Log("Mamaste");
-        }*/
-
-    }//End Update 
-
-    //Da una taza fija de frames 
-    private void FixedUpdate()
-    {
-        
     }
 
-}//End class
+    // Este es el método Flip
+    private void Flip()
+    {
+        mirandoDerecha = !mirandoDerecha;
+        Vector3 escala = transform.localScale;
+        escala.x *= -1;
+        transform.localScale = escala;
+    }
+
+    // Da una taza fija de frames
+    private void FixedUpdate()
+    {
+
+    }
+}

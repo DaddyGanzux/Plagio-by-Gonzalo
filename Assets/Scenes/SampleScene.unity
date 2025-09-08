@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformPlayer: {fileID: 0}
   rigidBody2DPlayer: {fileID: 0}
+  Velocidad: 5
   numero: 15
 --- !u!65 &127766305
 BoxCollider:
@@ -284,7 +285,7 @@ GameObject:
   - component: {fileID: 135439613}
   m_Layer: 0
   m_Name: Square (5)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -418,7 +419,7 @@ GameObject:
   - component: {fileID: 153148938}
   m_Layer: 0
   m_Name: Square (6)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -533,7 +534,7 @@ Transform:
   m_GameObject: {fileID: 153148937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.7, y: 3.84, z: 0}
+  m_LocalPosition: {x: -4.12, y: 3.8, z: 0}
   m_LocalScale: {x: 9.568503, y: 0.33456585, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -552,7 +553,7 @@ GameObject:
   - component: {fileID: 264399605}
   m_Layer: 0
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -686,7 +687,7 @@ GameObject:
   - component: {fileID: 512413591}
   m_Layer: 0
   m_Name: Square (4)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1223,7 +1224,7 @@ GameObject:
   - component: {fileID: 1530390758}
   m_Layer: 0
   m_Name: The Knight main sprites - atlas0 #00000357_568
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1242,6 +1243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transformPlayer: {fileID: 1530390757}
   rigidBody2DPlayer: {fileID: 0}
+  Velocidad: 1.5
   numero: 15
 --- !u!50 &1530390755
 Rigidbody2D:
@@ -1391,7 +1393,7 @@ GameObject:
   - component: {fileID: 1599390110}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1525,7 +1527,7 @@ GameObject:
   - component: {fileID: 1765318643}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1659,7 +1661,7 @@ GameObject:
   - component: {fileID: 1851267638}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Suelo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
