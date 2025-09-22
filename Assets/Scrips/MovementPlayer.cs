@@ -14,7 +14,6 @@ public class MovementPlayer : MonoBehaviour
     bool enSuelo;
     private Vector3 originalPosition;
     BoxCollider m_boxCollider; // Referencia al collider del Game Object
-    public string DeadSoneTag = "DeadSone";
 
 
     public void Jump()
@@ -28,12 +27,12 @@ public class MovementPlayer : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         // Hemos puesto un tag "Ground" sobre el suelo
-        if (other.gameObject.CompareTag("Suelo"))
+        if (other.gameObject.CompareTag(GameReferences.Tags.Suelo))
         {
             enSuelo = true;
         }
 
-        if (other.gameObject.CompareTag("DeadSone"))
+        if (other.gameObject.CompareTag(GameReferences.Tags.DeadZone))
         {
             ResetToOriginalPosition();
         }
@@ -82,6 +81,14 @@ public class MovementPlayer : MonoBehaviour
         { 
             Jump();
             Debug.Log("Saltemos");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(GameReferences.Tags.CheckPoint))
+        {
+            originalPosition = collision.gameObject.transform.position;
         }
     }
 
