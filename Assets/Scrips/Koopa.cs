@@ -1,9 +1,72 @@
 using UnityEngine;
 
+public class Crowler : MonoBehaviour
+{
+    [Header("Movimiento")]
+    [SerializeField]
+    private float speed = 2f;
+    public bool movingLeft = true;
+    [Header("Detección")]
+    public Transform groundCheck;
+    public Transform wallCheck;
+    public float checkDistanceX = 1f;
+    public float checkDistanceY = 0.3f;
+    public LayerMask ayerMaskWall;
+
+    Rigidbody2D rb;
+    SpriteRenderer spriteRenderer;
+
+    //
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+
+    void FixedUpdate()
+    {
+        // Operador ternario para dirección, primer valor si es true, segundo si es false
+        float moveDir = movingLeft ? -1f : 1f;
+        rb.linearVelocity = new Vector2(moveDir * speed, rb.linearVelocity.y);
+
+        // Detectar pared y falta de suelo  
+        bool hitWall = Physics.Raycast(wallCheck.position, movingLeft ? Vector2.left : Vector2.right, checkDistanceX, ayerMaskWall);
+        bool noGround = !Physics2D.Raycast(groundCheck.position, Vector2.down, checkDistanceY, ayerMaskWall);
+
+        // Cambiar dirección
+        if (hitWall || noGround)
+        {
+            Flip();
+        }
+    }
+
+    private void Update()
+    {
+        // Debug Rays
+        Debug.DrawRay(wallCheck.position, (movingLeft ? Vector2.left : Vector2.right) * checkDistanceX, Color.red);
+        //CircleCast
+        Debug.DrawRay(groundCheck.position, Vector2.down * checkDistanceY, Color.blue);
+
+    }
+
+    private void Flip()
+    {
+        movingLeft = !movingLeft;
+        Vector3 escala = transform.localScale;
+        escala.x *= -1;
+        transform.localScale = escala;
+    }
+}
+
+
+/*
+using UnityEngine;
+
 public class MovimientoEnemigoConPared : MonoBehaviour
 {
-    public float velocidad = 3f;
-    private int direccion = 1; // Direcci�n actual de movimiento (1 para derecha, -1 para izquierda)
+    public float velocidad = 2f;
+    private int direccion = -1;
     private Rigidbody2D rb;
     private bool mirandoDerecha = true;
 
@@ -18,15 +81,15 @@ public class MovimientoEnemigoConPared : MonoBehaviour
         rb.linearVelocity = new Vector2(velocidad * direccion, rb.linearVelocity.y);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        // Comprobar si el objeto con el que choc� tiene la etiqueta "Muro"
-        if (collision.gameObject.CompareTag("Muro"))
+        // Comprobar si el objeto con el que choco
+        if (collision.gameObject.CompareTag(GameReferences.Tags.Wall))
         {
-            // Invertir la direcci�n al chocar
+            // Invertir la direccion al chocar
             direccion *= -1;
 
-            // Opcional: Voltear el sprite para que mire en la nueva direcci�n
+            // Opcional: Voltear el sprite para que mire en la nueva direccion
             Flip();
         }
     }
@@ -38,4 +101,4 @@ public class MovimientoEnemigoConPared : MonoBehaviour
         escala.x *= -1;
         transform.localScale = escala;
     }
-}
+}*/
