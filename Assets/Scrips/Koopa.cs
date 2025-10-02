@@ -31,7 +31,7 @@ public class Crowler : MonoBehaviour
         rb.linearVelocity = new Vector2(moveDir * speed, rb.linearVelocity.y);
 
         // Detectar pared y falta de suelo  
-        bool hitWall = Physics.Raycast(wallCheck.position, movingLeft ? Vector2.left : Vector2.right, checkDistanceX, ayerMaskWall);
+        bool hitWall = Physics2D.Raycast(wallCheck.position, movingLeft ? Vector2.left : Vector2.right, checkDistanceX, ayerMaskWall);
         bool noGround = !Physics2D.Raycast(groundCheck.position, Vector2.down, checkDistanceY, ayerMaskWall);
 
         // Cambiar dirección
@@ -52,10 +52,9 @@ public class Crowler : MonoBehaviour
 
     private void Flip()
     {
+        Debug.Log("Flip");
         movingLeft = !movingLeft;
-        Vector3 escala = transform.localScale;
-        escala.x *= -1;
-        transform.localScale = escala;
+        spriteRenderer.flipX = !spriteRenderer.flipX;
     }
 }
 
