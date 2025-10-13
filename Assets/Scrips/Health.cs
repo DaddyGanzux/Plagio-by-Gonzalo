@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    [ContextMenu("TakeDamage")]
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount;

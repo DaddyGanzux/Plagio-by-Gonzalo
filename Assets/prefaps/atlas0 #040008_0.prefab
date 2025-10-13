@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4907752838496917434}
   - component: {fileID: 78001501392999031}
   - component: {fileID: 6648122269694535694}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: atlas0 #040008_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

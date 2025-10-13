@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Crowler : MonoBehaviour
+public class Koopa : MonoBehaviour
 {
     [Header("Movimiento")]
     [SerializeField]
@@ -12,6 +12,7 @@ public class Crowler : MonoBehaviour
     public float checkDistanceX = 1f;
     public float checkDistanceY = 0.3f;
     public LayerMask ayerMaskWall;
+    public Transform transformEnemy;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -21,6 +22,7 @@ public class Crowler : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        transformEnemy = GetComponent<Transform>();
     }
 
 
@@ -45,16 +47,22 @@ public class Crowler : MonoBehaviour
         Debug.DrawRay(groundCheck.position, Vector2.down * checkDistanceY, Color.blue);
 
     }
+    void FlipRaycats()
+    {
+        Debug.Log("FlipRaycats");
+        // Invierte solo el tranform (no el sprite)
+        transformEnemy.Rotate(0f, 180f, 0f);
+    }
 
     private void Flip()
     {
         Debug.Log("Flip");
         movingLeft = !movingLeft;
-        spriteRenderer.flipX = !spriteRenderer.flipX;
+        Debug.Log("Flip tranform ");
+        //spriteRenderer.flipX = !spriteRenderer.flipX;
+        transformEnemy.Rotate(0f, 180f, 0f);
     }
 }
-
-
 /*
 using UnityEngine;
 

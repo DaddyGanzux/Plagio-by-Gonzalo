@@ -38,6 +38,11 @@ public class MovementPlayer : MonoBehaviour
         {
             ResetToOriginalPosition();
         }
+
+        if (other.gameObject.CompareTag(GameReferences.Tags.Ovni))
+        {
+            ResetToOriginalPosition();
+        }
     }
 
     void Start()

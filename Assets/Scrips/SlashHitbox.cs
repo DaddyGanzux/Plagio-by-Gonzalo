@@ -22,6 +22,7 @@ public class SlashHitbox : MonoBehaviour
 
         if (enemyHealth != null) 
         {
+            print(other.name);
             enemyHealth.TakeDamage(damage);
 
         }

@@ -9,6 +9,7 @@ TagManager:
   - CheckPoint
   - Koopa
   - Wall
+  - Ovni
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Suelo
+  - Pared
   - 
   - 
   - 

@@ -11,6 +11,7 @@ public static class GameReferences
         public const string CheckPoint = "CheckPoint";
         public const string Wall = "Wall";
         public const string Koopa = "Koopa";
+        public const string Ovni = "Ovni";
 
     }
 

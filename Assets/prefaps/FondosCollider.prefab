@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6317871172440368283}
   - component: {fileID: 6704153558436819163}
   - component: {fileID: 1254363028846101453}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FondosCollider
   m_TagString: Suelo
   m_Icon: {fileID: 0}

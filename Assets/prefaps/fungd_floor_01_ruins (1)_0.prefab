@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8926144549909705501}
   - component: {fileID: 3551920525574512168}
   - component: {fileID: -6513803736072754241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: fungd_floor_01_ruins (1)_0
   m_TagString: Suelo
   m_Icon: {fileID: 0}
