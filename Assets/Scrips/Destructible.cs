@@ -11,7 +11,6 @@ public class Destructible : MonoBehaviour
 
         if (health <= 0)
         {
-            // Lógica de destrucción específica para el muro
             Debug.Log("Muro destruido!");
             Destroy(gameObject);
         }

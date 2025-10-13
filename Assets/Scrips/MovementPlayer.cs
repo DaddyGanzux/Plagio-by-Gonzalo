@@ -13,20 +13,17 @@ public class MovementPlayer : MonoBehaviour
     public float numero = 15f;
     bool enSuelo;
     private Vector3 originalPosition;
-    BoxCollider m_boxCollider; // Referencia al collider del Game Object
+    BoxCollider m_boxCollider;
 
 
     public void Jump()
     {
         enSuelo = false;
         rigidBody2DPlayer.AddForce(Vector2.up * jump, ForceMode2D.Impulse);
-        //transformPlayer.position += new Vector3(0, 500, 0) * Time.deltaTime;
     }
 
-    // Verificamos las colisiones
     void OnCollisionEnter2D(Collision2D other)
     {
-        // Hemos puesto un tag "Ground" sobre el suelo
         if (other.gameObject.CompareTag(GameReferences.Tags.Suelo))
         {
             enSuelo = true;
@@ -36,23 +33,25 @@ public class MovementPlayer : MonoBehaviour
         {
             ResetToOriginalPosition();
         }
+
+        if (other.gameObject.CompareTag(GameReferences.Tags.Koopa))
+        {
+            ResetToOriginalPosition();
+        }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Debug.Log("Start empieza aqui");
 
-        rigidBody2DPlayer = GetComponent<Rigidbody2D>();   //Jala el rb del objeto 
+        rigidBody2DPlayer = GetComponent<Rigidbody2D>();
         m_boxCollider = GetComponent<BoxCollider>();
         enSuelo = true;
         originalPosition = transformPlayer.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // Moverse a la izquierda
         if (Input.GetKey(KeyCode.A))
         {
             rigidBody2DPlayer.AddForce(Vector2.left * Velocidad);
@@ -64,7 +63,6 @@ public class MovementPlayer : MonoBehaviour
             }
         }
 
-        // Moverse a la derecha
         if (Input.GetKey(KeyCode.D))
         {
             rigidBody2DPlayer.AddForce(Vector2.right * Velocidad);
@@ -76,7 +74,6 @@ public class MovementPlayer : MonoBehaviour
             }
         }
 
-        // Saltar
         if (Input.GetKeyDown(KeyCode.Space) && enSuelo == true)
         { 
             Jump();
@@ -92,7 +89,6 @@ public class MovementPlayer : MonoBehaviour
         }
     }
 
-    // Este es el método Flip
     private void Flip()
     {
         mirandoDerecha = !mirandoDerecha;
@@ -101,7 +97,6 @@ public class MovementPlayer : MonoBehaviour
         transform.localScale = escala;
     }
 
-    // Da una taza fija de frames
     private void FixedUpdate()
     {
 
